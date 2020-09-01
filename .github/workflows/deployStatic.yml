@@ -25,7 +25,7 @@ jobs:
     env:
       BUILD_ID: ${{ github.event.number }}
     steps:
-      - name: Print Env Vars
+      - name: Cleaning
         run: |
           echo Git Base Ref: ${{ github.base_ref }}
           echo Git Build ID: ${{ github.event.number }}
