@@ -15,10 +15,11 @@ jobs:
           echo Git Base Ref: ${{ github.base_ref }}
           echo Git Build ID: ${{ github.event.number }}
           echo Git Pull Request Ref: ${{ github.event.pull_request.head.sha }}
+          echo Event Number: ${{ github.event.number }}
   clean:
     name: Clean Deployment Artifacts
     runs-on: ubuntu-latest
-    if: ${{ github.event.pull_request.merged != true && github.base_ref != 'master'  }}
+    if: ${{ github.event.pull_request.merged != true }}
     needs:
       - checkEnv
     env:
@@ -29,4 +30,4 @@ jobs:
           echo Git Base Ref: ${{ github.base_ref }}
           echo Git Build ID: ${{ github.event.number }}
           echo Git Pull Request Ref: ${{ github.event.pull_request.head.sha }}
-          echo 'Cleaning'
+          echo Cleaning
