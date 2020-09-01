@@ -1,0 +1,32 @@
+name: Cleanup after PR Close
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  # Print variables for logging and debugging purposes
+  checkEnv:
+    name: Check Env variables
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Env Vars
+        run: |
+          echo Git Base Ref: ${{ github.base_ref }}
+          echo Git Build ID: ${{ github.event.number }}
+          echo Git Pull Request Ref: ${{ github.event.pull_request.head.sha }}
+  clean:
+    name: Clean Deployment Artifacts
+    runs-on: ubuntu-latest
+    if: ${{ github.event.pull_request.merged != true && github.base_ref != 'master'  }}
+    needs:
+      - checkEnv
+    env:
+      BUILD_ID: ${{ github.event.number }}
+    steps:
+      - name: Print Env Vars
+        run: |
+          echo Git Base Ref: ${{ github.base_ref }}
+          echo Git Build ID: ${{ github.event.number }}
+          echo Git Pull Request Ref: ${{ github.event.pull_request.head.sha }}
+          echo 'Cleaning'
