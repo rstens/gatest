@@ -18,7 +18,7 @@ jobs:
   clean:
     name: Clean Deployment Artifacts
     runs-on: ubuntu-latest
-    if: ${{ github.event.pull_request.merged != true && github.base_ref != 'master'  }}
+    if: ${{ github.event.pull_request.merged != true }}
     needs:
       - checkEnv
     env:
