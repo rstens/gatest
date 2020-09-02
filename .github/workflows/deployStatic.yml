@@ -15,7 +15,7 @@ jobs:
           echo Git Base Ref: ${{ github.base_ref }}
           echo Git Build ID: ${{ github.event.number }}
           echo Git Pull Request Ref: ${{ github.event.pull_request.head.sha }}
-          echo ${{ toJson(github.event) }}
+          echo ${{github.event}}
           echo ${{github.event_path}}
           echo ${{github.workflow}}
           echo ${{github.job}}
