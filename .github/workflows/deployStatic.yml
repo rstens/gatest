@@ -15,7 +15,48 @@ jobs:
           echo Git Base Ref: ${{ github.base_ref }}
           echo Git Build ID: ${{ github.event.number }}
           echo Git Pull Request Ref: ${{ github.event.pull_request.head.sha }}
-          echo Event Number: ${{ github.event.number }}
+          echo ${{github.event}}
+          echo ${{github.event_path}}
+          echo ${{github.workflow}}
+          echo ${{github.job}}
+          echo ${{github.run_id}}
+          echo ${{github.run_number}}
+          echo ${{github.actor}}
+          echo ${{github.repository}}
+          echo ${{github.repository_owner}}
+          echo ${{github.event_name}}
+          echo ${{github.sha}}
+          echo ${{github.ref}}
+          echo ${{github.head_ref}}
+          echo ${{github.base_ref}}
+          echo ${{github.token}}
+          echo ${{github.workspace}}
+          echo ${{github.action}}
+          echo ${{github.action_path}}
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - name: Dump job context
+        env:
+          JOB_CONTEXT: ${{ toJson(job) }}
+        run: echo "$JOB_CONTEXT"
+      - name: Dump steps context
+        env:
+          STEPS_CONTEXT: ${{ toJson(steps) }}
+        run: echo "$STEPS_CONTEXT"
+      - name: Dump runner context
+        env:
+          RUNNER_CONTEXT: ${{ toJson(runner) }}
+        run: echo "$RUNNER_CONTEXT"
+      - name: Dump strategy context
+        env:
+          STRATEGY_CONTEXT: ${{ toJson(strategy) }}
+        run: echo "$STRATEGY_CONTEXT"
+      - name: Dump matrix context
+        env:
+          MATRIX_CONTEXT: ${{ toJson(matrix) }}
+        run: echo "$MATRIX_CONTEXT"
   clean:
     name: Clean Deployment Artifacts
     runs-on: ubuntu-latest
